@@ -1,0 +1,31 @@
+# When connecting to the database with pgadmin for the connection use 'container_name: buchi_db'
+# To connect to the pgadmin use 'http://localhost:9432' in the browser
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: buchi_db
+    restart: always
+    ports:
+      - '8432:5432'
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - net_buchi
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    container_name: pg_buchi_client
+    restart: always
+    ports:
+      - '9432:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL}'
+      PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD}'
+    networks:
+      - net_buchi
+networks:
+  net_buchi:
+    driver: bridge
+
