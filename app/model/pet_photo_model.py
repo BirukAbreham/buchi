@@ -8,5 +8,4 @@ class PetPhoto(Base):
     id = Column(Integer, primary_key=True, index=True)
     pet_id = Column(Integer, ForeignKey("pets.id"))
     photo_url = Column(String)
-
-    pet = relationship("Pet", back_populates="pet_photos")
+    pet = relationship("Pet", backref="pet_photos")

@@ -10,6 +10,10 @@ class PetCreate(BaseModel):
     gender: str
     good_with_children: bool
 
+class PetPhotoCreate(BaseModel):
+    pet_id: int
+    photo_url: str
+
 class PetCreated(PetResponseBase):
     pet_id: int
 

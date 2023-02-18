@@ -8,5 +8,4 @@ class Customer(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     phone = Column(String, unique=True)
-
-    pets = relationship("Adopt", back_populates="pets")
+    pets = relationship("Pet", secondary="adoptions", back_populates="customers")

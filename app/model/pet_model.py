@@ -11,6 +11,4 @@ class Pet(Base):
     type = Column(String)
     gender = Column(String)
     good_with_children = Column(Boolean, default=True)
-
-    photos = relationship("PetPhoto", back_populates="pet")
-    customers = relationship("Adopt", back_populates="customers")
+    customers = relationship("Customer", secondary="adoptions", back_populates="pets")
