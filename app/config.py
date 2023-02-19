@@ -3,6 +3,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    BASE_URL: str
     CLIENT_ID: str
     CLIENT_SECRET: str
     UPLOAD_DIR: str
