@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 
+
 class PetResponseBase(BaseModel):
     status: str
+
 
 class PetCreate(BaseModel):
     age: str
@@ -10,18 +12,22 @@ class PetCreate(BaseModel):
     gender: str
     good_with_children: bool
 
+
 class PetPhotoCreate(BaseModel):
     pet_id: int
     photo_url: str
 
+
 class PetCreated(PetResponseBase):
     pet_id: int
+
 
 class PhotoSchema(BaseModel):
     photo_url: str
 
     class Config:
         orm_mode = True
+
 
 class PetSchema(BaseModel):
     id: int
@@ -35,6 +41,7 @@ class PetSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
 
 class PetSearchResponse(PetResponseBase):
     pets: list[PetSchema] = []

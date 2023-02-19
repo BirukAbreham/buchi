@@ -8,12 +8,16 @@ from app.config import get_settings
 
 settings = get_settings()
 
+
 def get_unique_filename(filename) -> str:
     photo_name, photo_ext = filename.split(".")[0], filename.split(".")[1]
 
-    unique_filename = hashlib.md5(photo_name.encode("utf-8")).hexdigest() + "." + photo_ext
+    unique_filename = (
+        hashlib.md5(photo_name.encode("utf-8")).hexdigest() + "." + photo_ext
+    )
 
     return unique_filename
+
 
 async def save_pet(db: Session, pet: PetCreate, photos: list[UploadFile] | None = None):
     if photos is None or len(photos) == 0:
@@ -24,10 +28,12 @@ async def save_pet(db: Session, pet: PetCreate, photos: list[UploadFile] | None 
         for photo in photos:
             filename = get_unique_filename(photo.filename)
 
-            async with aiofiles.open(settings.UPLOAD_DIR + "/" + filename, 'wb') as file:
+            async with aiofiles.open(
+                settings.UPLOAD_DIR + "/" + filename, "wb"
+            ) as file:
                 content = await photo.read()
                 await file.write(content)
-            
+
             create_pet_photo(db, PetPhotoCreate(pet_id=new_pet.id, photo_url=filename))
-    
+
     return new_pet

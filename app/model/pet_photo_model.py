@@ -2,6 +2,7 @@ from app.db import Base
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
+
 class PetPhoto(Base):
     __tablename__ = "pet_photos"
 

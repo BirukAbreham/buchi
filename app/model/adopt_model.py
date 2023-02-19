@@ -1,6 +1,7 @@
 from app.db import Base
 from sqlalchemy import Column, Integer, ForeignKey
 
+
 class Adopt(Base):
     __tablename__ = "adoptions"
 
