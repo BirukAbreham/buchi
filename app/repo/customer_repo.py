@@ -11,3 +11,6 @@ def create_customer(db: Session, customer: CustomerCreate):
 
 def get_customer_by_phone(db: Session, phone: str):
     return db.query(Customer).filter(Customer.phone == phone).first()
+
+def get_customer_by_id(db: Session, customer_id: int):
+    return db.query(Customer).filter(Customer.id == customer_id).first()

@@ -24,3 +24,6 @@ def create_pet_photo(db: Session, pet_photo: PetPhotoCreate):
 
 def find_pet(db: Session, type: str = "", gender: str = "", size: str = "", age: str = "", good_with_children: bool = True, limit: int = 10, skip: int = 0):
     pass
+
+def get_pet_by_id(db: Session, pet_id: int):
+    return db.query(Pet).filter(Pet.id == pet_id).first()
